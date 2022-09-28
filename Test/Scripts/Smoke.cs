@@ -1,10 +1,6 @@
-﻿using MT_automation.Src.PageObject.Pages;
+﻿using System;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
-using System;
+using MT_automation.Src.PageObject.Pages;
 
 namespace MT_automation.Test.Scripts
 {
