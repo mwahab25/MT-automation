@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
-using SeleniumExtras.WaitHelpers;
+using MT_automation.Src.Actions;
 
 namespace MT_automation.Src.PageObject.Pages
 {
@@ -32,14 +32,14 @@ namespace MT_automation.Src.PageObject.Pages
 
         public void Login(string username,string pass)
         {
-            wait.Until(ExpectedConditions.ElementToBeClickable(username_text));
-            username_text.SendKeys(username);
+            Waits.WaitUntilElementDisplayed(driver,username_text);
+            Elements.Type(username_text,username);
 
-            wait.Until(ExpectedConditions.ElementToBeClickable(password_text));
-            password_text.SendKeys(pass);
-            
-            wait.Until(ExpectedConditions.ElementToBeClickable(login_text));
-            login_text.Click();
+            Waits.WaitUntilElementDisplayed(driver, password_text);
+            Elements.Type(password_text, pass);
+
+            Waits.WaitUntilElementToBeClickable(driver, login_text);
+            Elements.Click(login_text);
         }
     }
 }

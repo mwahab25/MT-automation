@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
-using SeleniumExtras.WaitHelpers;
+using MT_automation.Src.Actions;
 
 namespace MT_automation.Src.PageObject.Pages
 {
@@ -16,7 +16,7 @@ namespace MT_automation.Src.PageObject.Pages
         public HomePage(IWebDriver driver)
         {
             this.driver = driver;
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            //wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             PageFactory.InitElements(driver, this);
         }
 
@@ -24,19 +24,19 @@ namespace MT_automation.Src.PageObject.Pages
         [CacheLookup]
         private IWebElement dashboard_title;
 
-        public void goToPage()
+        public void GoToPage()
         {
             driver.Navigate().GoToUrl(home_url);
         }
 
-        public String getPageTitle()
+        public String GetPageTitle()
         {
             return driver.Title;
         }
 
-        public string getHeaderTitle()
+        public string GetHeaderTitle()
         {
-            wait.Until(ExpectedConditions.ElementToBeClickable(dashboard_title));
+            Waits.WaitUntilElementDisplayed(driver, dashboard_title);
             return dashboard_title.Text;
         }
     }

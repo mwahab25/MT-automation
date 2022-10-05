@@ -1,4 +1,5 @@
 ﻿using System;
+using MT_automation.Src;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -13,12 +14,13 @@ namespace MT_automation.Test
         [OneTimeSetUp]
         public virtual void BeforeAll()
         {
-            //configuration
+            Log.SetLogger(@".\log.txt");
+            ExtentReport.SetExtentReporter(@".\Report" + DateTime.Now.ToString("_MMddyyyy_hhmmtt") + ".html");
         }
 
         [SetUp]
         public virtual void BeforeEach()
-        {
+        {      
             driver = new ChromeDriver();
             driver.Navigate().GoToUrl("https://mt-test.ahad.sa");
             driver.Manage().Window.Maximize();
@@ -45,7 +47,9 @@ namespace MT_automation.Test
         [OneTimeTearDown]
         public virtual void AfterAll()
         {
-
+            ExtentReport.Flush();
+            driver.Quit();
+            driver.Dispose();
         }
     }
 }
